@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -32,6 +33,7 @@ public class HomeController {
 
     @RequestMapping("/album")
     public String albumList(Model model) {
+        model.addAttribute("songs", songRepository.findAll());
         model.addAttribute("albums", albumRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("transactions", transactionRepository.findAll());
@@ -69,7 +71,7 @@ public class HomeController {
             transactionRepository.save(transaction);
         }
         int newBalance = (int) Array.get(payload.get("newUserBalance"), 0);
-        userRepository.findById((long) Array.get(payload.get("user"), 0));
+        userRepository.findById(new Long((int) Array.get(payload.get("user"), 0)));
         return "album";
     }
 
@@ -89,7 +91,25 @@ public class HomeController {
 
     @GetMapping("/song")
     public String song(Model model) {
-        model.addAttribute("song", songRepository.findAll());
+
+        ArrayList<HashMap<String, Object>> songs = new ArrayList<>();
+
+        for (Song s : songRepository.findAll()) {
+            Album a = s.getAlbum();
+            HashMap<String, Object> song = new HashMap<>();
+            song.put("albumName", a.getAlbumname());
+            song.put("genre", a.getGenre());
+            song.put("year", a.getYear());
+            song.put("songName", s.getSongname());
+            song.put("duration", s.getDuration());
+            song.put("artist", s.getArtist());
+            song.put("albumId", a.getId());
+            song.put("songId", s.getId());
+            songs.add(song);
+        }
+        model.addAttribute("songs", songs);
+        model.addAttribute("transactions", transactionRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "song";
 
     }
