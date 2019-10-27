@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Title</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var cart = [];
+        var prices = [];
+        var user = "";
+        var userBalance;
+
+
+        function addAlbum(albumId, price) {
+            cart.push(albumId);
+            prices.push(price);
+        }
+
+        function addUser() {
+            var users = /*[[${users}]]*/ [];
+            console.log(users)
+            var selectedUser = users.find(function (user) {
+                return user.id === parseInt(document.getElementById('user').value)
+            });
+            if (selectedUser) {
+                console.log('found')
+                userBalance = selectedUser.balance;
+                console.log(selectedUser.balance);
+                document.getElementById("userBalance").value = selectedUser.balance;
+            }
+            user = parseInt(document.getElementById('user').value);
+            console.log(user)
+            // document.getElementById("userBalance").value = document.getElementById('balance').value;
+            // console.log(document.getElementById('balance').value)
+        }
+
+        function purchase() {
+            var totalPrice = 0;
+            prices.forEach(function (price) {
+                totalPrice += parseFloat(price);
+            });
+            if (totalPrice > 50) {
+                totalPrice = totalPrice * .9
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'http://localhost:8080/purchase');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                albums: cart,
+                priceEach: [totalPrice / (cart.length)],
+                newUserBalance: [userBalance - totalPrice],
+                user: [user]
+            }));
+        }
+
+        /*]]>*/
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/album">Album Library</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/transaction">purchased albums</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/song">Songs available</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin page</a>
+        </li>
+
+    </ul>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <select id="user" onclick="addUser()">
+                <option value=""> Select A User</option>
+                <option th:each="user: ${users}" th:value="${user.id}"
+                        th:text="${user.username}">
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-hover table-dark">
+                <thead>
+                <tr>
+                <tr th:each="album : ${albums}">
+                    <td th:text="${album.albumname}">
+                    <td></td>
+                    <td th:text="${album.genre}">
+                    <td th:text="${album.price}">
+                    <td th:text="${album.year}">
+                    </td>
+                    <ul>
+                        <div th:each="song : ${album.songs}">
+                            <li th:inline="text"><b>[[${song.songname}]]</b>
+                            </li>
+                        </div>
+                    </ul>
+                    <button th:attr="onclick=|addAlbum('${album.id}', '${album.price}')|">Add Album</button>
+                </tr>
+                </thead>
+            </table>
+
+            <button th:attr="onclick=|purchase()|">Purchase</button>
+        </div>
+        <div class="col-6">
+            <h1>Balance</h1>
+            <br>
+            <input id="userBalance" value="" disabled>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+</body>
+</html>

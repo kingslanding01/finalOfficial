@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/album">Album Library</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/transaction">purchased albums</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/song">Songs available</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin page</a>
+        </li>
+
+    </ul>
+</nav>
+
+<h1>Add New Albums</h1>
+<form action="#" th:action="@{/processalbum}" th:object="${album}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    Album Name :<input type="text" th:field="*{albumname}" />
+    <span th:if="${#fields.hasErrors('albumname')}"
+          th:errors="*{albumname}"></span><br/>
+    Album Genre :<input type="text" th:field="*{genre}" />
+    <span th:if="${#fields.hasErrors('genre')}"
+          th:errors="*{genre}"></span><br/>
+    Album Release Year :<input type="text" th:field="*{year}" />
+    <span th:if="${#fields.hasErrors('year')}"
+          th:errors="*{year}"></span><br/>
+    Album Price :<input type="text" th:field="*{price}" />
+    <span th:if="${#fields.hasErrors('price')}"
+          th:errors="*{price}"></span><br/>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+
+
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

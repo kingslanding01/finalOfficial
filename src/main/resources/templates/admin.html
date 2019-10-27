@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/album">Album Library</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/transaction">purchased albums</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/song">Songs available</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin page</a>
+        </li>
+
+    </ul>
+</nav>
+<font color="black"><h1>Albums</h1></font>
+<table>
+    <tr>
+        <th><font color="black">Album Name</font></th>
+        <br/>
+
+    </tr>
+    <tr th:each="album : ${album}">
+        <td th:text="${album.albumname}">
+        <td th:text="${album.genre}">
+        <td th:text="${album.year}">
+        <td th:text="${album.price}">
+
+        </td>
+        <td>
+            <form action="/add" method="get" class="inline">
+                <button class="float-left submit-button" >Add Album</button>
+            </form>
+
+<!--            <a class="btn btn-outline-dark" th:href="@{/updatealbum}" role="button">Add A Album</a>-->
+<!--            <a class="btn btn-outline-dark" th:href="@{/detailalbum/{id}(id=${album.id})}" role="button">Details</a>-->
+            <a class="btn btn-outline-dark" th:href="@{/deletealbum/{id}(id=${album.id})}" role="button">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
