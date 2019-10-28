@@ -50,64 +50,64 @@ public class DataLoader implements CommandLineRunner {
         Song song24;
 
 
-        album = new Album("Rock", "queen", "1984", 10);
+        album = new Album("Rock", "Queen", "1984", 10);
         albumRepository.save(album);
 
-        album1 = new Album("rap", "Stankonia", "2000", 10);
+        album1 = new Album("Rap", "Stankonia", "2000", 10);
         albumRepository.save(album1);
 
-        album2 = new Album("rock", "Tragic Kingdom", "1992", 10);
+        album2 = new Album("Rock", "Tragic Kingdom", "1992", 10);
         albumRepository.save(album2);
 
-        album3 = new Album("classic rock", "Dark Side of The Moon", "1971", 10);
+        album3 = new Album("Classic Rock", "Dark Side of The Moon", "1971", 10);
         albumRepository.save(album3);
 
-        album4 = new Album("gospel", "Starlight", "2017", 10);
+        album4 = new Album("Gospel", "Starlight", "2017", 10);
         albumRepository.save(album4);
 
-        song = new Song("We Are The Champions", 3, "queen", "rock", album);
+        song = new Song("We Are The Champions", 3, "Queen", "Rock", album);
         songRepository.save(song);
 
-        song1 = new Song("Bohemian Rhapsody", 5, "queen", "rock", album);
+        song1 = new Song("Bohemian Rhapsody", 5, "Queen", "Rock", album);
         songRepository.save(song1);
 
-        song2 = new Song("under pressure", 4, "queen", "rock", album);
+        song2 = new Song("Under Pressure", 4, "Queen", "Rock", album);
         songRepository.save(song2);
 
-        song3 = new Song("fat bottomed girls", 3, "queen", "rock", album);
+        song3 = new Song("Fat Bottomed Girls", 3, "Queen", "Rock", album);
         songRepository.save(song3);
 
-        song4 = new Song("we will rock you", 4, "queen", "rock", album);
+        song4 = new Song("We Will Rock You", 4, "Queen", "Rock", album);
         songRepository.save(song4);
 
-        song5 = new Song("Gasoline Dreams", 3, "Outkast", "hip hop", album1);
+        song5 = new Song("Gasoline Dreams", 3, "Outkast", "Hip Hop", album1);
         songRepository.save(song5);
 
-        song6 = new Song("Ms. Jackson", 4, "Outkast", "hip hop", album1);
+        song6 = new Song("Ms. Jackson", 4, "Outkast", "Hip Hop", album1);
         songRepository.save(song6);
 
-        song7 = new Song("Good Hair", 4, "Outkast", "hip hop", album1);
+        song7 = new Song("Good Hair", 4, "Outkast", "Hip Hop", album1);
         songRepository.save(song7);
 
-        song8 = new Song("Humble Mumble", 5, "Outkast", "hip hop", album1);
+        song8 = new Song("Humble Mumble", 5, "Outkast", "Hip Hop", album1);
         songRepository.save(song8);
 
-        song9 = new Song("Kim & Cookie", 4, "Outkast", "hip hop", album1);
+        song9 = new Song("Kim & Cookie", 4, "Outkast", "Hip Hop", album1);
         songRepository.save(song9);
 
-        song10 = new Song("Just a Girl", 4, "No Doubt", "rock", album2);
+        song10 = new Song("Just a Girl", 4, "No Doubt", "Rock", album2);
         songRepository.save(song10);
 
-        song11= new Song("Hey You!", 4, "No Doubt", "rock", album2);
+        song11= new Song("Hey You!", 4, "No Doubt", "Rock", album2);
         songRepository.save(song11);
 
-        song12 = new Song("Sixteen", 4, "No Doubt", "rock", album2);
+        song12 = new Song("Sixteen", 4, "No Doubt", "Rock", album2);
         songRepository.save(song12);
 
-        song13 = new Song("Don't Speak", 4, "No Doubt", "rock", album2);
+        song13 = new Song("Don't Speak", 4, "No Doubt", "Rock", album2);
         songRepository.save(song13);
 
-        song14 = new Song("The Climb", 4, "No Doubt", "rock", album2);
+        song14 = new Song("The Climb", 4, "No Doubt", "Rock", album2);
         songRepository.save(song14);
 
         song15= new Song("Time", 5, "Pink Floyd", "Classic Rock", album3);

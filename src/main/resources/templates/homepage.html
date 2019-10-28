@@ -40,7 +40,7 @@
     User Password :<input type="text" th:field="*{password}"/>
     <span th:if="${#fields.hasErrors('password')}"
           th:errors="*{password}"></span><br/>
-    User Balance :<input type="number" th:field="*{balance}"/>
+    Deposit Amount :<input type="number" th:field="*{balance}"/>
     <button class="btn btn-primary" type="submit">Submit</button>
 
 </form>

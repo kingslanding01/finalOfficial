@@ -63,6 +63,15 @@ public class HomeController {
         return "homepage";
 
     }
+    @PostMapping("/refresh")
+    public String albumRefresh(Model model) {
+        model.addAttribute("songs", songRepository.findAll());
+        model.addAttribute("albums", albumRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("transactions", transactionRepository.findAll());
+        return "song";
+    }
+
 
     @PostMapping("/purchase")
     public String purchase(@RequestBody Map<String, int[]> payload) {
@@ -74,6 +83,10 @@ public class HomeController {
         userRepository.findById(new Long((int) Array.get(payload.get("user"), 0)));
         return "album";
     }
+//    @RequestMapping("/refresh")
+//    public String refreshAlbum(){
+//        return "song";
+//    }
 
     @GetMapping("/transaction")
     public String transaction(Model model) {
@@ -129,6 +142,7 @@ public class HomeController {
         albumRepository.save(album);
         return "redirect:/album";
     }
+
 
 
     @PostMapping("/processuser")

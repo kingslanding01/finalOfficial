@@ -107,38 +107,41 @@
                         th:value="${user.id}">
                 </option>
             </select>
+            <br/>
+            <h1>Balance</h1>
+            <input disabled id="userBalance" value="">
+
         </div>
     </div>
+<br/>
 
     <div class="row">
         <div class="col-6">
             <table class="table table-hover table-dark">
                 <thead>
-                <tr>
+                <tr></tr>
+                <td><h3>Album Name</h3></td>
+                <td><h3>Genre</h3></td>
+                <td><h3>Price</h3></td>
+                <td><h3>Release Year</h3></td>
                 <tr th:each="album : ${albums}">
                     <td th:text="${album.albumname}">
-                    <td></td>
                     <td th:text="${album.genre}">
                     <td th:text="${album.price}">
                     <td th:text="${album.year}">
-                    </td>
-                    <ul>
-                        <div th:each="song : ${album.songs}">
-                            <li th:inline="text"><b>[[${song.songname}]]</b>
-                            </li>
-                        </div>
-                    </ul>
+                    <td th:each="song : ${album.songs}">
+                            <td th:inline="text"[[${song.songname}]]>
+
                     <button th:attr="onclick=|addAlbum('${album.id}', '${album.price}')|">Add Album</button>
                 </tr>
+
                 </thead>
             </table>
 
-            <button th:attr="onclick=|purchase()|">Purchase</button>
+            <button th:href="@{/refresh}" th:attr="onclick=|purchase()|">Purchase</button>
         </div>
         <div class="col-6">
-            <h1>Balance</h1>
-            <br>
-            <input disabled id="userBalance" value="">
+
         </div>
     </div>
 </div>
