@@ -8,6 +8,14 @@
     <title>Title</title>
 </head>
 <body>
+<style>
+    body {
+        background-image: url("https://res.cloudinary.com/dwnqgtvop/image/upload/v1572272727/cd-dvd-computer-data-shiny-digital-wallpaper-preview_c4t5s8.jpg");
+        backgroud-repeat: no-repeat;
+        background-size:1980px;
+    }
+</style>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
     <ul class="navbar-nav">
@@ -27,17 +35,17 @@
     </ul>
 </nav>
 <br/>
-<h1>Home Page</h1>
+<font color="white"><h1>Home Page</h1></font>
 
 <form action="#" th:action="@{/processuser}" th:object="${users}" method="post">
     <input type="hidden" th:field="*{id}"/>
-    User Name :<input type="text" th:field="*{username}"/>
+    <font color="white">User Name :</font><input type="text" th:field="*{username}"/>
     <span th:if="${#fields.hasErrors('username')}"
           th:errors="*{username}"></span><br/>
-    User Password :<input type="text" th:field="*{password}"/>
+    <font color="white">User Password :</font><input type="text" th:field="*{password}"/>
     <span th:if="${#fields.hasErrors('password')}"
           th:errors="*{password}"></span><br/>
-    Deposit Amount :<input type="number" th:field="*{balance}"/>
+    <font color="white">Deposit Amount :</font><input type="number" th:field="*{balance}"/>
     <button class="btn btn-primary" type="submit">Submit</button>
 
 </form>
