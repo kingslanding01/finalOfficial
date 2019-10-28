@@ -15,9 +15,10 @@
 
 4.The user will then refresh the page and the updated remaining balance will be displayed. 
 
-5.The user can go to the album library to display the albums that they purchased.
+5.The user goes to songs available in order to view songs that they purchased.
 
-*also there is an admin page and if the user is an admin they will be to add albums to the main library and remove albums from the main
+*there is an admin page and if the user is an admin they will be to add albums to the main library and remove albums from the main
 library*
+*user receives a 10% discount for albums purchased over $50*
 
 
